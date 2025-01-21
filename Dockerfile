@@ -1,5 +1,5 @@
 # Set the base image for subsequent instructions
-FROM php:7.3-apache
+FROM php:7.4-apache
 
 # Update packages
 RUN apt-get -y update
@@ -13,16 +13,13 @@ RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
 
 RUN docker-php-ext-configure gd \
-  --with-gd \
-  --with-jpeg-dir \
-  --with-png-dir \
-  --with-zlib-dir
+   --with-jpeg=/usr/include/
 RUN docker-php-ext-install gd
 
 # for phpunit timeout
 RUN docker-php-ext-install pcntl
 
-RUN pecl install mcrypt-1.0.2 && docker-php-ext-enable mcrypt
+RUN pecl install mcrypt-1.0.3 && docker-php-ext-enable mcrypt
 
 # Install needed extensions
 # Here you can install any other extension that you need during the test and deployment process
