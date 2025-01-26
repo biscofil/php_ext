@@ -7,7 +7,7 @@ RUN apt-get -y update
 RUN apt-get install -y --no-install-recommends apt-utils
 
 # Install PHP and composer dependencies
-RUN apt-get install --fix-missing -qq git curl libmcrypt-dev libjpeg-dev libpng-dev libfreetype6-dev libbz2-dev zip unzip libzip-dev zlib1g-dev libicu-dev g++ libxml2-dev
+RUN apt-get install --fix-missing -qq git curl libmcrypt-dev libjpeg-dev libpng-dev libfreetype6-dev libbz2-dev zip unzip libzip-dev zlib1g-dev libicu-dev g++ libxml2-dev libgmp-dev re2c libmhash-dev file
 
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
@@ -30,6 +30,11 @@ RUN pecl install xdebug-3.1.6 && docker-php-ext-enable xdebug
 RUN pecl install pcov && docker-php-ext-enable pcov
 
 RUN docker-php-ext-install soap
+
+# gmp
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+RUN docker-php-ext-configure gmp
+RUN docker-php-ext-install gmp
 
 # Install Composer
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
