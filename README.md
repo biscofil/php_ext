@@ -17,4 +17,5 @@ Includes:
   - xdebug
   - pcov
   - soap
+  - gmp
 - composer
