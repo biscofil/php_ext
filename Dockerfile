@@ -42,5 +42,9 @@ RUN curl --silent --show-error https://getcomposer.org/installer | php -- --inst
 RUN a2enmod rewrite
 RUN a2enmod ssl
 
+RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
+
 # Set the working directory
 WORKDIR /var/www/html

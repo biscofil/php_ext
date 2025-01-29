@@ -6,7 +6,7 @@ Includes:
 - apache
   - rewrite
   - ssl
-- php 7.x (depending on branch) 
+- php 7.4
 - php extensions:
   - intl
   - gd
@@ -19,3 +19,9 @@ Includes:
   - soap
   - gmp
 - composer
+
+## Build
+
+```shell
+docker build -t biscofil/php_ext:7.4 .
+```
