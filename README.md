@@ -6,12 +6,11 @@ Includes:
 - apache
   - rewrite
   - ssl
-- php 7.4
+- php 8.4
 - php extensions:
   - intl
   - gd
   - pcntl
-  - mcrypt
   - pdo_mysql
   - zip
   - xdebug
@@ -23,5 +22,5 @@ Includes:
 ## Build
 
 ```shell
-docker build -t biscofil/php_ext:7.4 .
+docker build -t biscofil/php_ext:8.4 .
 ```
